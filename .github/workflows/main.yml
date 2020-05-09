@@ -16,4 +16,4 @@ jobs:
         uses: actions/checkout@master
       - name: update and install packages
         run: |
-          apt-get -qy install bison
+          apt update
