@@ -20,3 +20,5 @@ jobs:
         run: |
           pwd
           ls -al
+          chmod 755 build.sh
+          ./build.sh
