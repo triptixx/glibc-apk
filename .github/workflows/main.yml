@@ -1,0 +1,18 @@
+name: glibc build
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  glibc:
+    runs-on: ubuntu-latest
+    env:
+      GLIBC_VER: 2.31
+      PREFIX_DIR: /usr/glibc-compat
+    steps:
+      - name: clone
+        uses: actions/checkout@master
+      - name: update and install packages
+        run: |
+          apt-get -q update
