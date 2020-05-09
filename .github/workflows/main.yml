@@ -18,4 +18,5 @@ jobs:
       - name: start build.sh
         shell: bash
         run: |
-          ls -al "$HOME"
+          pwd
+          ls -al
