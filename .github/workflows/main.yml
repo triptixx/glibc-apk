@@ -16,6 +16,7 @@ jobs:
       - name: clone
         uses: actions/checkout@master
       - name: start build.sh
+        shell: bash
         run: |
           pwd
           ls -al

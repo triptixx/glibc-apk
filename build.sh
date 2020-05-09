@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-set -eo pipefail
+set -exo pipefail
 
 apt-get update
 apt-get -y install bison
