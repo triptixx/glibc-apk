@@ -15,5 +15,6 @@ jobs:
       - name: clone
         uses: actions/checkout@master
       - name: update and install packages
+        shell: bash
         run: |
           apt update
