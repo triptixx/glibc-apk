@@ -1,11 +1,11 @@
-name: glibc build
+name: glibc-builder
 on:
   push:
     branches:
       - master
 
 jobs:
-  glibc:
+  glibc-builder:
     runs-on: ubuntu-latest
     container:
       image: ubuntu:latest
@@ -15,8 +15,7 @@ jobs:
     steps:
       - name: clone
         uses: actions/checkout@master
-      - name: update and install packages
+      - name: start build.sh
         shell: bash
         run: |
-          apt-get update
-          apt-get -y install bison
+          ls -al "$HOME"
