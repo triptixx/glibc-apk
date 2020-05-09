@@ -7,10 +7,11 @@ on:
 jobs:
   glibc:
     runs-on: ubuntu-latest
-    container: ubuntu:latest
-    env:
-      GLIBC_VER: '2.31'
-      PREFIX_DIR: '/usr/glibc-compat'
+    container:
+      image: ubuntu:latest
+      env:
+        GLIBC_VER: '2.31'
+        PREFIX_DIR: '/usr/glibc-compat'
     steps:
       - name: clone
         uses: actions/checkout@master
