@@ -32,4 +32,5 @@ jobs:
       - name: upload artifact
         uses: actions/upload-artifact@master
         with:
-          name: glibc-bin-${GLIBC_VER}.tar.gz
+          name: glibc-bin-${{ env.GLIBC_VER }}
+          path: ${{ github.workspace }}/glibc-bin-${{ env.GLIBC_VER }}.tar.gz
