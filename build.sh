@@ -2,8 +2,6 @@
 
 set -exo pipefail
 
-sed -i "s|<prefix_dir>|$PREFIX_DIR|" configparams
-
 wget -O- "https://ftp.gnu.org/gnu/glibc/glibc-${GLIBC_VER}.tar.gz" | tar -xz -C /
 
 "/glibc-${GLIBC_VER}/configure" \

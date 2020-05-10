@@ -1,5 +1,0 @@
-slibdir=<prefix_dir>/lib
-rtlddir=<prefix_dir>/lib
-sbindir=<prefix_dir>/bin
-rootsbindir=<prefix_dir>/bin
-build-programs=yes
