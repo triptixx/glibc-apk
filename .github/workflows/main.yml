@@ -13,8 +13,8 @@ jobs:
         GLIBC_VER: '2.31'
         PREFIX_DIR: '/usr/glibc-compat'
         DEBIAN_FRONTEND: 'noninteractive'
-      options:
-        - -w '/glibc-build'
+      options: |
+        -w '/glibc-build'
     steps:
       - name: clone
         uses: actions/checkout@master
