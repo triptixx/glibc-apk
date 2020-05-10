@@ -2,7 +2,7 @@
 
 set -exo pipefail
 
-mv configparams /glibc-build/configparams
+sed -i "s|<prefix_dir>|$PREFIX_DIR|" configparams
 
 wget -O- "https://ftp.gnu.org/gnu/glibc/glibc-${GLIBC_VER}.tar.gz" | tar -xz -C /
 
@@ -15,4 +15,4 @@ wget -O- "https://ftp.gnu.org/gnu/glibc/glibc-${GLIBC_VER}.tar.gz" | tar -xz -C 
 make -j$(nproc)
 make install
 
-tar --dereference --hard-dereference -zc -f "/glibc-bin-${GLIBC_VER}.tar.gz" "$PREFIX_DIR"
+tar --dereference --hard-dereference -zc -f "glibc-bin-${GLIBC_VER}.tar.gz" "$PREFIX_DIR"
