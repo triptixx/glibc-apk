@@ -13,8 +13,6 @@ jobs:
         GLIBC_VER: '2.31'
         PREFIX_DIR: '/usr/glibc-compat'
         DEBIAN_FRONTEND: 'noninteractive'
-      options: |
-        -w '/glibc-build'
     steps:
       - name: clone
         uses: actions/checkout@master
@@ -24,6 +22,9 @@ jobs:
       - name: install packages
         shell: bash
         run: apt-get -y install build-essential wget gawk bison python3 gettext texinfo
+      - name: echo pwd
+        shell: bash
+        run: echo "$GITHUB_WORKSPACE"
 #      - name: start build
 #        shell: bash
 #        run: |
