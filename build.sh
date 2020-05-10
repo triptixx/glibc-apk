@@ -15,4 +15,5 @@ wget -O- "https://ftp.gnu.org/gnu/glibc/glibc-${GLIBC_VER}.tar.gz" | tar -xz -C 
 make -j$(nproc)
 make install
 
+find "$PREFIX_DIR" -exec sh -c 'file "{}" | grep -q ELF && strip --strip-debug "{}"' \;
 tar --dereference --hard-dereference -zc -f "glibc-bin-${GLIBC_VER}.tar.gz" "$PREFIX_DIR"

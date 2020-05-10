@@ -4,6 +4,9 @@ on:
     branches:
       - master
 
+env:
+  GLIBC_VER: '2.31'
+
 jobs:
   glibc-builder:
     runs-on: ubuntu-latest
@@ -13,9 +16,8 @@ jobs:
     container:
       image: ubuntu:latest
       env:
-        GLIBC_VER: '2.31'
-        PREFIX_DIR: '/usr/glibc-compat'
         DEBIAN_FRONTEND: 'noninteractive'
+        PREFIX_DIR: '/usr/glibc-compat'
     steps:
       - name: clone
         uses: actions/checkout@master
@@ -27,5 +29,7 @@ jobs:
         run: |
           chmod 755 build.sh
           ./build.sh
-      - name: echo
-        run: ls -al
+      - name: upload artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: glibc-bin-${{ GLIBC_VER }}.tar.gz
