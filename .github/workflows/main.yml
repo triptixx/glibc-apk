@@ -14,7 +14,7 @@ jobs:
         PREFIX_DIR: '/usr/glibc-compat'
         DEBIAN_FRONTEND: 'noninteractive'
       options:
-        w: '/glibc-build'
+        - -w '/glibc-build'
     steps:
       - name: clone
         uses: actions/checkout@master
