@@ -12,13 +12,20 @@ jobs:
       env:
         GLIBC_VER: '2.31'
         PREFIX_DIR: '/usr/glibc-compat'
+        DEBIAN_FRONTEND: 'noninteractive'
+      options:
+        w: '/glibc-build'
     steps:
       - name: clone
         uses: actions/checkout@master
-      - name: start build.sh
+      - name: update container
         shell: bash
-        run: |
-          pwd
-          ls -al
-          chmod 755 build.sh
-          ./build.sh
+        run: apt-get update
+      - name: install packages
+        shell: bash
+        run: apt-get -y install build-essential wget gawk bison python3 gettext texinfo
+#      - name: start build
+#        shell: bash
+#        run: |
+#          chmod 755 build.sh
+#          ./build.sh
