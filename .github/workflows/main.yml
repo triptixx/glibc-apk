@@ -10,17 +10,17 @@ env:
 jobs:
   apk-builder:
     - name: abuild
-        uses: triptixx/action-alpine-abuild@master
-        with:
-          private_key: ${{ secrets.private_key }}
-          public_key: |-
-            -----BEGIN PUBLIC KEY-----
-            MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtoHpLA+EKg0M8z8Uh/kq
-            o9mzMiuh6rYhmEKFbjSWYoU5LFrzKZOlzpC0nT04qyuK6/00+SjQ1xXa648+gZPw
-            aVwxwavf59yVycKeDidfzB8pvEbYoASDmZT8Deh+HvqmIh/EGWZnZjTemQMf9qA5
-            unj3n3AXat3yDBg6XBnBd4BxO8iRY0614zcjjbDBbTEm7ywGj6j2Y+Wy7kbIoPK5
-            xZkB/jGsc2iY6zGQPsHSWBgYGn2QVghEiDnyy60+etWtUlzpP+iqi2yhxbPQNW1i
-            KdxONz5d3Rt6MkD+ttpx1ei5X+jEacMMWLyEnpCi0XCoJCtv4WQEJ67iKjHOPD5n
-            VwIDAQAB
-            -----END PUBLIC KEY-----
-          packager: 'Loxoo Labs <triptixx@loxoolabs.net>'
+      uses: triptixx/action-alpine-abuild@master
+      with:
+        private_key: ${{ secrets.private_key }}
+        public_key: |-
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtoHpLA+EKg0M8z8Uh/kq
+          o9mzMiuh6rYhmEKFbjSWYoU5LFrzKZOlzpC0nT04qyuK6/00+SjQ1xXa648+gZPw
+          aVwxwavf59yVycKeDidfzB8pvEbYoASDmZT8Deh+HvqmIh/EGWZnZjTemQMf9qA5
+          unj3n3AXat3yDBg6XBnBd4BxO8iRY0614zcjjbDBbTEm7ywGj6j2Y+Wy7kbIoPK5
+          xZkB/jGsc2iY6zGQPsHSWBgYGn2QVghEiDnyy60+etWtUlzpP+iqi2yhxbPQNW1i
+          KdxONz5d3Rt6MkD+ttpx1ei5X+jEacMMWLyEnpCi0XCoJCtv4WQEJ67iKjHOPD5n
+          VwIDAQAB
+          -----END PUBLIC KEY-----
+        packager: 'Loxoo Labs <triptixx@loxoolabs.net>'
