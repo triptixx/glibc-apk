@@ -32,4 +32,4 @@ jobs:
       - name: upload artifact
         uses: actions/upload-artifact@master
         with:
-          name: glibc-bin-${{ GLIBC_VER }}.tar.gz
+          name: glibc-bin-${GLIBC_VER}.tar.gz
