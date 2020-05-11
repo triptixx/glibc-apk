@@ -1,4 +1,5 @@
 name: glibc-apk
+on:
   push:
     branches:
       - master
