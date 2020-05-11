@@ -8,54 +8,13 @@ env:
   GLIBC_VER: '2.31'
 
 jobs:
-  glibc-build:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-    container:
-      image: ubuntu:latest
-      env:
-        DEBIAN_FRONTEND: 'noninteractive'
-        PREFIX_DIR: '/usr/glibc-compat'
-    steps:
-      - name: clone
-        uses: actions/checkout@master
-      - name: update container
-        run: apt-get update
-      - name: install packages
-        run: apt-get -y install build-essential wget gawk bison python3 gettext texinfo
-      - name: start build
-        run: |
-          chmod 755 build.sh
-          ./build.sh
-      - name: upload artifact
-        uses: actions/upload-artifact@master
-        with:
-          name: glibc-bin-${{ env.GLIBC_VER }}
-          path: ${{ github.workspace }}/glibc-bin-${{ env.GLIBC_VER }}.tar.gz
   apk-build:
     needs: glibc-build
     runs-on: ubuntu-latest
     steps:
       - name: clone
         uses: actions/checkout@master
-      - name: download artifact
-        uses: actions/download-artifact@master
-        with:
-          name: glibc-bin-${{ env.GLIBC_VER }}
       - name: start build
         uses: triptixx/action-alpine-abuild@master
         with:
-          private_key: ${{ secrets.private_key }}
-          public_key: |-
-            -----BEGIN PUBLIC KEY-----
-            MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtoHpLA+EKg0M8z8Uh/kq
-            o9mzMiuh6rYhmEKFbjSWYoU5LFrzKZOlzpC0nT04qyuK6/00+SjQ1xXa648+gZPw
-            aVwxwavf59yVycKeDidfzB8pvEbYoASDmZT8Deh+HvqmIh/EGWZnZjTemQMf9qA5
-            unj3n3AXat3yDBg6XBnBd4BxO8iRY0614zcjjbDBbTEm7ywGj6j2Y+Wy7kbIoPK5
-            xZkB/jGsc2iY6zGQPsHSWBgYGn2QVghEiDnyy60+etWtUlzpP+iqi2yhxbPQNW1i
-            KdxONz5d3Rt6MkD+ttpx1ei5X+jEacMMWLyEnpCi0XCoJCtv4WQEJ67iKjHOPD5n
-            VwIDAQAB
-            -----END PUBLIC KEY-----
           packager: 'Loxoo Labs <triptixx@loxoolabs.net>'
