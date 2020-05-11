@@ -8,6 +8,32 @@ env:
   GLIBC_VER: '2.31'
 
 jobs:
+  glibc-builder:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    container:
+      image: ubuntu:latest
+      env:
+        DEBIAN_FRONTEND: 'noninteractive'
+        PREFIX_DIR: '/usr/glibc-compat'
+    steps:
+      - name: clone
+        uses: actions/checkout@master
+      - name: update container
+        run: apt-get update
+      - name: install packages
+        run: apt-get -y install build-essential wget gawk bison python3 gettext texinfo
+      - name: start build
+        run: |
+          chmod 755 build.sh
+          ./build.sh
+      - name: upload artifact
+        uses: actions/upload-artifact@master
+        with:
+#          name: glibc-bin-${{ env.GLIBC_VER }}
+          path: ${{ github.workspace }}/glibc-bin-${{ env.GLIBC_VER }}.tar.gz
   apk-builder:
     runs-on: ubuntu-latest
     steps:
