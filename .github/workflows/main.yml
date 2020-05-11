@@ -1,5 +1,4 @@
-name: glibc-builder
-on:
+name: glibc-apk
   push:
     branches:
       - master
@@ -8,7 +7,7 @@ env:
   GLIBC_VER: '2.31'
 
 jobs:
-  glibc-builder:
+  glibc-build:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -32,12 +31,19 @@ jobs:
       - name: upload artifact
         uses: actions/upload-artifact@master
         with:
-#          name: glibc-bin-${{ env.GLIBC_VER }}
+          name: glibc-bin-${{ env.GLIBC_VER }}
           path: ${{ github.workspace }}/glibc-bin-${{ env.GLIBC_VER }}.tar.gz
-  apk-builder:
+  apk-build:
+    needs: glibc-build
     runs-on: ubuntu-latest
     steps:
-      - name: abuild
+      - name: clone
+        uses: actions/checkout@master
+      - name: download artifact
+        uses: actions/download-artifact@master
+        with:
+          name: glibc-bin-${{ env.GLIBC_VER }}
+      - name: start build
         uses: triptixx/action-alpine-abuild@master
         with:
           private_key: ${{ secrets.private_key }}
