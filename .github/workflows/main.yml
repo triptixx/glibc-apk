@@ -9,7 +9,6 @@ env:
 
 jobs:
   apk-build:
-    needs: glibc-build
     runs-on: ubuntu-latest
     steps:
       - name: clone
