@@ -6,6 +6,7 @@ on:
 
 env:
   GLIBC_VER: '2.31'
+  PREFIX_DIR: '/usr/glibc-compat'
 
 jobs:
   glibc-build:
@@ -17,7 +18,6 @@ jobs:
       image: ubuntu:latest
       env:
         DEBIAN_FRONTEND: 'noninteractive'
-        PREFIX_DIR: '/usr/glibc-compat'
     steps:
       - name: clone
         uses: actions/checkout@master
@@ -44,6 +44,10 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: glibc-bin-${{ env.GLIBC_VER }}
+      - name: sed PREFIX_DIR
+        run: |
+          sed 's|<PREFIX_DIR>|${{ env.GLIBC_VER }}|g' ${{ github.workspace }}/glibc-bin.trigger
+          sed 's|<PREFIX_DIR>|${{ env.GLIBC_VER }}|g' ${{ github.workspace }}/ld.so.conf
       - name: start build
         uses: triptixx/action-alpine-abuild@master
         with:
