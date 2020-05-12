@@ -69,5 +69,3 @@ jobs:
             VwIDAQAB
             -----END PUBLIC KEY-----
           packager: 'Loxoo Labs <triptixx@loxoolabs.net>'
-
-          echo -e "\n\nsha512sums=\"$(sha512sum /root/text.txt /root/text@.txt)\""
