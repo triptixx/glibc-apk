@@ -22,7 +22,8 @@ package() {
     cp "${srcdir}/nsswitch.conf" "${pkgdir}/etc/nsswitch.conf"
     rm -rf "${pkgdir}${PREFIX_DIR}/etc/rpc" "${pkgdir}${PREFIX_DIR}/bin" "${pkgdir}${PREFIX_DIR}/sbin" \
         "${pkgdir}${PREFIX_DIR}/lib/gconv" "${pkgdir}${PREFIX_DIR}/lib/getconf" "${pkgdir}${PREFIX_DIR}/lib/audit" \
-        "${pkgdir}${PREFIX_DIR}/share" "${pkgdir}${PREFIX_DIR}/var"
+        "${pkgdir}${PREFIX_DIR}/share" "${pkgdir}${PREFIX_DIR}/var" "${pkgdir}${PREFIX_DIR}/lib/ld-linux-x86-64.so.2"
+    ln -s "${PREFIX_DIR}/lib/ld-${pkgver}.so" "${pkgdir}${PREFIX_DIR}/lib/ld-linux-x86-64.so.2"
     ln -s "${PREFIX_DIR}/lib/ld-linux-x86-64.so.2" "${pkgdir}/lib/ld-linux-x86-64.so.2"
     ln -s "${PREFIX_DIR}/lib/ld-linux-x86-64.so.2" "${pkgdir}/lib64/ld-linux-x86-64.so.2"
     ln -s "${PREFIX_DIR}/lib/ld-linux-x86-64.so.2" "${pkgdir}${PREFIX_DIR}/lib64/ld-linux-x86-64.so.2"
@@ -30,7 +31,7 @@ package() {
 }
 
 bin() {
-    depends="$pkgname libgcc libc6-compat"
+    depends="$pkgname libgcc"
     mkdir -p "${subpkgdir}${PREFIX_DIR}"
     cp -a "${srcdir}${PREFIX_DIR}/bin" "${subpkgdir}${PREFIX_DIR}"
     cp -a "${srcdir}${PREFIX_DIR}/sbin" "${subpkgdir}${PREFIX_DIR}"

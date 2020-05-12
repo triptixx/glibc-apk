@@ -68,4 +68,4 @@ jobs:
           packager: 'Loxoo Labs <triptixx@loxoolabs.net>'
       - name: verif
         run: |
-          ls -al ${{ github.workspace }}/packages/github
+          ls -al ${{ github.workspace }}/packages/glibc-apk/x86_64
