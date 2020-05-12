@@ -5,12 +5,13 @@ pkgver="$GLIBC_VER"
 pkgrel="0"
 pkgdesc="GNU C Library compatibility layer"
 arch="x86_64"
+options="!check"
 url="https://github.com/triptixx/glibc-apk"
 license="LGPL"
 source="glibc-bin-${pkgver}.tar.gz
 nsswitch.conf
 ld.so.conf"
-subpackages="${pkgname}-bin ${pkgname}-dev ${pkgname}-i18n"
+subpackages="${pkgname}-bin ${pkgname}-dev ${pkgname}-i18n:i18n:noarch"
 triggers="${pkgname}-bin.trigger=/lib:/usr/lib:${PREFIX_DIR}/lib"
 
 package() {
