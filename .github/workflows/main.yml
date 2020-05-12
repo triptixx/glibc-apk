@@ -46,10 +46,13 @@ jobs:
           name: glibc-bin-${{ env.GLIBC_VER }}
       - name: sed PREFIX_DIR
         run: |
-          sed 's|<PREFIX_DIR>|${{ env.GLIBC_VER }}|g' ${{ github.workspace }}/glibc-bin.trigger
-          sed 's|<PREFIX_DIR>|${{ env.GLIBC_VER }}|g' ${{ github.workspace }}/ld.so.conf
+          sed -i 's|<PREFIX_DIR>|${{ env.GLIBC_VER }}|g' ${{ github.workspace }}/glibc-bin.trigger
+          sed -i 's|<PREFIX_DIR>|${{ env.GLIBC_VER }}|g' ${{ github.workspace }}/ld.so.conf
           echo -e "\nsha512sums=\"$(sha512sum ${{ github.workspace }}/glibc-bin-${{ env.GLIBC_VER }}.tar.gz \
             ${{ github.workspace }}/nsswitch.conf ${{ github.workspace }}/ld.so.conf)\"" >> ${{ github.workspace }}/APKBUILD
+          cat ${{ github.workspace }}/glibc-bin.trigger
+          cat ${{ github.workspace }}/ld.so.conf
+          cat ${{ github.workspace }}/APKBUILD
       - name: start build
         uses: triptixx/action-alpine-abuild@master
         with:
