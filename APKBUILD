@@ -37,7 +37,6 @@ bin() {
 
 i18n() {
     depends="${pkgname}-bin"
-    arch="noarch"
     mkdir -p "${subpkgdir}${PREFIX_DIR}"
     cp -a "${srcdir}${PREFIX_DIR}/share" "${subpkgdir}${PREFIX_DIR}"
 }
