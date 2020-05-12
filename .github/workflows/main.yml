@@ -49,7 +49,8 @@ jobs:
           sed -i 's|<PREFIX_DIR>|${{ env.PREFIX_DIR }}|g' ${{ github.workspace }}/glibc-bin.trigger
           sed -i 's|<PREFIX_DIR>|${{ env.PREFIX_DIR }}|g' ${{ github.workspace }}/ld.so.conf
           echo -e "\n\nsha512sums=\"$(sha512sum ${{ github.workspace }}/glibc-bin-${{ env.GLIBC_VER }}.tar.gz \
-            ${{ github.workspace }}/nsswitch.conf ${{ github.workspace }}/ld.so.conf)\"" >> ${{ github.workspace }}/APKBUILD
+            ${{ github.workspace }}/nsswitch.conf ${{ github.workspace }}/ld.so.conf)\"" \
+            | sed 's|${{ github.workspace }}/||' >> ${{ github.workspace }}/APKBUILD
           cat ${{ github.workspace }}/glibc-bin.trigger
           cat ${{ github.workspace }}/ld.so.conf
           cat ${{ github.workspace }}/APKBUILD
@@ -68,3 +69,5 @@ jobs:
             VwIDAQAB
             -----END PUBLIC KEY-----
           packager: 'Loxoo Labs <triptixx@loxoolabs.net>'
+
+          echo -e "\n\nsha512sums=\"$(sha512sum /root/text.txt /root/text@.txt)\""
