@@ -7,9 +7,9 @@ pkgdesc="GNU C Library compatibility layer"
 arch="x86_64"
 url="https://github.com/triptixx/glibc-apk"
 license="LGPL"
-source="glibc-bin-${pkgver}.tar.gz
-nsswitch.conf
-ld.so.conf"
+source="${GITHUB_WORKSPACE}/glibc-bin-${pkgver}.tar.gz
+${GITHUB_WORKSPACE}/nsswitch.conf
+${GITHUB_WORKSPACE}/ld.so.conf"
 subpackages="${pkgname}-bin ${pkgname}-dev ${pkgname}-i18n"
 triggers="${pkgname}-bin.trigger=/lib:/usr/lib:${PREFIX_DIR}/lib"
 
