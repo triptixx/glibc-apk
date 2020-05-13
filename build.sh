@@ -13,4 +13,4 @@ wget -O- "https://ftp.gnu.org/gnu/glibc/glibc-${GLIBC_VER}.tar.gz" | tar -xz -C 
 make -j$(nproc)
 make install DESTDIR=/output
 
-tar --dereference --hard-dereference -zc -f "glibc-bin-${GLIBC_VER}.tar.gz" -C "/output" ".${PREFIX_DIR}"
+tar --dereference --hard-dereference -zc -f "glibc-bin-${GLIBC_VER}.tar.gz" -C "/output" .
