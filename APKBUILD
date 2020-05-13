@@ -17,7 +17,9 @@ triggers="${pkgname}-bin.trigger=/lib:/usr/lib:${PREFIX_DIR}/lib"
 
 package() {
     mkdir -p "${pkgdir}/lib" "${pkgdir}/lib64" "${pkgdir}${PREFIX_DIR}/lib64" "${pkgdir}/etc" \
-        "${pkgdir}${PREFIX_DIR}/lib/locale"
+        "${pkgdir}${PREFIX_DIR}/lib/locale" "${pkgdir}/usr/lib"
+
+    cp -a "${srcdir}/usr/glibc-compat/lib/ld-linux-x86-64.so.2" "${pkgdir}/usr/lib"
 
     cp -a "${srcdir}/usr" "$pkgdir"
     cp "${srcdir}/ld.so.conf" "${pkgdir}${PREFIX_DIR}/etc/ld.so.conf"
