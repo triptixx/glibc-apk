@@ -90,6 +90,8 @@ jobs:
     needs: apk-test
     runs-on: ubuntu-latest
     steps:
+      - name: clone
+        uses: actions/checkout@master
       - name: download artifact
         uses: actions/download-artifact@master
         with:
