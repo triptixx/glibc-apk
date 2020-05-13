@@ -11,6 +11,6 @@ wget -O- "https://ftp.gnu.org/gnu/glibc/glibc-${GLIBC_VER}.tar.gz" | tar -xz -C 
     --enable-multi-arch \
     --enable-stack-protector=strong
 make -j$(nproc)
-make install
+make install DESTDIR=/output
 
-tar --dereference --hard-dereference -zc -f "glibc-bin-${GLIBC_VER}.tar.gz" "$PREFIX_DIR"
+tar --dereference --hard-dereference -zc -f "glibc-bin-${GLIBC_VER}.tar.gz" "/output/$PREFIX_DIR"
