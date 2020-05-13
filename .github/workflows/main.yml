@@ -73,6 +73,7 @@ jobs:
           name: glibc-apk-${{ env.GLIBC_VER }}
           path: ${{ github.workspace }}/packages/glibc-apk/x86_64
   apk-test:
+    needs: apk-build
     runs-on: ubuntu-latest
     defaults:
       run:
