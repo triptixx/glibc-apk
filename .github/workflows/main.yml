@@ -9,14 +9,14 @@ env:
   PREFIX_DIR: '/usr/glibc-compat'
   PUBLIC_KEY: |-
     -----BEGIN PUBLIC KEY-----
-      MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtoHpLA+EKg0M8z8Uh/kq
-      o9mzMiuh6rYhmEKFbjSWYoU5LFrzKZOlzpC0nT04qyuK6/00+SjQ1xXa648+gZPw
-      aVwxwavf59yVycKeDidfzB8pvEbYoASDmZT8Deh+HvqmIh/EGWZnZjTemQMf9qA5
-      unj3n3AXat3yDBg6XBnBd4BxO8iRY0614zcjjbDBbTEm7ywGj6j2Y+Wy7kbIoPK5
-      xZkB/jGsc2iY6zGQPsHSWBgYGn2QVghEiDnyy60+etWtUlzpP+iqi2yhxbPQNW1i
-      KdxONz5d3Rt6MkD+ttpx1ei5X+jEacMMWLyEnpCi0XCoJCtv4WQEJ67iKjHOPD5n
-      VwIDAQAB
-      -----END PUBLIC KEY-----
+    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtoHpLA+EKg0M8z8Uh/kq
+    o9mzMiuh6rYhmEKFbjSWYoU5LFrzKZOlzpC0nT04qyuK6/00+SjQ1xXa648+gZPw
+    aVwxwavf59yVycKeDidfzB8pvEbYoASDmZT8Deh+HvqmIh/EGWZnZjTemQMf9qA5
+    unj3n3AXat3yDBg6XBnBd4BxO8iRY0614zcjjbDBbTEm7ywGj6j2Y+Wy7kbIoPK5
+    xZkB/jGsc2iY6zGQPsHSWBgYGn2QVghEiDnyy60+etWtUlzpP+iqi2yhxbPQNW1i
+    KdxONz5d3Rt6MkD+ttpx1ei5X+jEacMMWLyEnpCi0XCoJCtv4WQEJ67iKjHOPD5n
+    VwIDAQAB
+    -----END PUBLIC KEY-----
 
 jobs:
   glibc-build:
@@ -75,9 +75,6 @@ jobs:
   apk-test:
     needs: apk-build
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: sh
     container:
       image: alpine:latest
     steps:
@@ -89,29 +86,21 @@ jobs:
         run: |
           echo "${{ env.PUBLIC_KEY }}" > /etc/apk/keys/abuild.rsa.pub
           apk add --no-cache *.apk
-
-
-
-
-
-
-
-
-
-
-
-
-
-      # - name: verif
-      #   run: |
-      #     ls -al ${{ github.workspace }}/packages/glibc-apk/x86_64
-      # - name: Upload Release Asset
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   run: |
-      #     set -x
-      #     assets=()
-      #     for asset in ${{ github.workspace }}/packages/glibc-apk/x86_64/*.{apk,tar.gz}; do
-      #       assets+=("-a" "$asset")
-      #     done
-      #     hub release create "${assets[@]}" -m "Release ${{ env.GLIBC_VER }}" "${{ env.GLIBC_VER }}"
+  apk-assets:
+    needs: apk-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: download artifact
+        uses: actions/download-artifact@master
+        with:
+          name: glibc-apk-${{ env.GLIBC_VER }}
+      - name: Upload Release Asset
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -x
+          assets=()
+          for asset in ./*.{apk,tar.gz}; do
+            assets+=("-a" "$asset")
+          done
+          hub release create "${assets[@]}" -m "Release ${{ env.GLIBC_VER }}" "${{ env.GLIBC_VER }}"
