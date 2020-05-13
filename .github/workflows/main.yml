@@ -6,7 +6,7 @@ on:
 
 env:
   GLIBC_VER: '2.31'
-  PREFIX_DIR: '/usr'
+  PREFIX_DIR: '/usr/glibc-compat'
 
 jobs:
   glibc-build:
