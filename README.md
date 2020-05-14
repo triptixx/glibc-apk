@@ -1,8 +1,9 @@
 [actions]: https://github.com/triptixx/glibc-apk/actions
+[support]: https://github.com/triptixx/glibc-apk
 
 # [glibc-apk]
 [![Build Status](https://github.com/triptixx/glibc-apk/workflows/glibc-apk/badge.svg)][actions]
-[![x86_64](https://img.shields.io/badge/x86__64-supported-brightgreen.svg)[actions]
+[![x86_64](https://img.shields.io/badge/x86__64-supported-brightgreen.svg)][support]
 
 ## Usage
 
