@@ -105,4 +105,5 @@ jobs:
           for asset in ./*.{apk,tar.gz}; do
             assets+=("-a" "$asset")
           done
+          hub release delete "${{ env.GLIBC_VER }}"
           hub release create "${assets[@]}" -m "Release ${{ env.GLIBC_VER }}" "${{ env.GLIBC_VER }}"
