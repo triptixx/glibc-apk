@@ -64,6 +64,7 @@ jobs:
       - name: start build
         uses: triptixx/action-alpine-abuild@master
         with:
+          name_key: glibc-apk
           private_key: ${{ secrets.private_key }}
           public_key: ${{ env.PUBLIC_KEY }}
           packager: 'Loxoo Labs <triptixx@loxoolabs.net>'
@@ -84,7 +85,7 @@ jobs:
           name: glibc-apk-${{ env.GLIBC_VER }}
       - name: Test package installation
         run: |
-          echo "${{ env.PUBLIC_KEY }}" > /etc/apk/keys/abuild.rsa.pub
+          echo "${{ env.PUBLIC_KEY }}" > /etc/apk/keys/glibc-apk.rsa.pub
           apk add --no-cache *.apk
   apk-assets:
     needs: apk-test
