@@ -16,7 +16,7 @@ See the [releases page](https://github.com/triptixx/glibc-apk/releases) for the 
 The current installation method for these packages is to pull them in using `wget` or `curl` and install the local file with `apk`:
 
 ```shell
-wget -q -O /etc/apk/keys/glibc-apk.rsa.pub https://github.com/triptixx/glibc-apk/blob/master/glibc-apk.rsa.pub
+wget -q https://github.com/triptixx/glibc-apk/blob/master/glibc-apk.rsa.pub -O /etc/apk/keys/glibc-apk.rsa.pub
 https://github.com/triptixx/glibc-apk/releases/download/v2.31/glibc-2.31-r0.apk
 apk add --no-cache glibc-2.31-r0.apk
 ```
