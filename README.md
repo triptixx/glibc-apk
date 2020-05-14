@@ -18,7 +18,7 @@ The current installation method for these packages is to pull them in using `wge
 ```shell
 wget -q -O /etc/apk/keys/glibc-apk.rsa.pub https://github.com/triptixx/glibc-apk/blob/master/glibc-apk.rsa.pub
 https://github.com/triptixx/glibc-apk/releases/download/v2.31/glibc-2.31-r0.apk
-apk add glibc-2.31-r0.apk
+apk add --no-cache glibc-2.31-r0.apk
 ```
 
 ## Locales
@@ -28,6 +28,6 @@ You will need to generate your locale if you would like to use a specific one fo
 ```shell
 wget https://github.com/triptixx/glibc-apk/releases/download/v2.31/glibc-bin-2.31-r0.apk
 wget https://github.com/triptixx/glibc-apk/releases/download/v2.31/glibc-i18n-2.31-r0.apk
-apk add glibc-bin-2.31-r0.apk glibc-i18n-2.31-r0.apk
+apk add --no-cache glibc-bin-2.31-r0.apk glibc-i18n-2.31-r0.apk
 /usr/glibc-compat/bin/localedef -i en_US -f UTF-8 en_US.UTF-8
 ```
