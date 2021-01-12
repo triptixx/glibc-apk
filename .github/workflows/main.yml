@@ -5,7 +5,7 @@ on:
       - master
 
 env:
-  GLIBC_VER: '2.31'
+  GLIBC_VER: '2.32'
   PREFIX_DIR: '/usr/glibc-compat'
   PUBLIC_KEY: |-
     -----BEGIN PUBLIC KEY-----
