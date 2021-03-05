@@ -16,7 +16,7 @@ subpackages="${pkgname}-bin ${pkgname}-dev ${pkgname}-i18n:i18n:noarch"
 triggers="${pkgname}-bin.trigger=/lib:/usr/lib:${PREFIX_DIR}/lib"
 
 package() {
-    mkdir -p "${pkgdir}/lib" "${pkgdir}/lib64" "${pkgdir}/etc" \
+    mkdir -p "${pkgdir}/lib" "${pkgdir}/etc" \
         "${pkgdir}${PREFIX_DIR}/lib/locale"
 
     cp -a "${srcdir}/usr" "$pkgdir"
