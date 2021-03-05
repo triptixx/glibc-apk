@@ -6,7 +6,7 @@ pkgver="$GLIBC_VER"
 pkgrel="0"
 pkgdesc="GNU C Library compatibility layer"
 arch="x86_64"
-options="!check"
+options="lib64"
 url="https://github.com/triptixx/glibc-apk"
 license="LGPL"
 source="glibc-bin-${pkgver}.tar.gz
@@ -16,7 +16,7 @@ subpackages="${pkgname}-bin ${pkgname}-dev ${pkgname}-i18n:i18n:noarch"
 triggers="${pkgname}-bin.trigger=/lib:/usr/lib:${PREFIX_DIR}/lib"
 
 package() {
-    mkdir -p "${pkgdir}/lib" "${pkgdir}/etc" \
+    mkdir -p "${pkgdir}/lib" "${pkgdir}/lib64" "${pkgdir}${PREFIX_DIR}/lib64" "${pkgdir}/etc" \
         "${pkgdir}${PREFIX_DIR}/lib/locale"
 
     cp -a "${srcdir}/usr" "$pkgdir"
@@ -29,6 +29,8 @@ package() {
 
     ln -s "${PREFIX_DIR}/lib/ld-${pkgver}.so" "${pkgdir}${PREFIX_DIR}/lib/ld-linux-x86-64.so.2"
     ln -s "${PREFIX_DIR}/lib/ld-linux-x86-64.so.2" "${pkgdir}/lib/ld-linux-x86-64.so.2"
+    ln -s "${PREFIX_DIR}/lib/ld-linux-x86-64.so.2" "${pkgdir}/lib64/ld-linux-x86-64.so.2"
+    ln -s "${PREFIX_DIR}/lib/ld-linux-x86-64.so.2" "${pkgdir}${PREFIX_DIR}/lib64/ld-linux-x86-64.so.2"
     ln -s "${PREFIX_DIR}/etc/ld.so.cache" "${pkgdir}/etc/ld.so.cache"
 }
 
